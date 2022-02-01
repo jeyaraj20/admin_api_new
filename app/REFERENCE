@@ -1,0 +1,52 @@
+const [subcategory] = await db.sequelize.query(
+  `select cat1.exa_cat_name as maincatname, cat2.exa_cat_name as subcatname, que.* 
+  from tbl__question as que, tbl__exam_category as cat1, tbl__exam_category as cat2 
+  where cat1.exa_cat_id = ` + maincat + ` and cat2.exa_cat_id = ` + subcat + `and qid in
+  (select qid from tbl__examquestions where exam_id in
+  (SELECT exam_id FROM tbl__exam where exam_cat = ` + maincat + ` and exam_sub = ` + subcat + ` and exam_sub_sub = ` + subsubcat + `)
+  and)`
+);
+
+
+
+
+ const  [subcategory] = await Questions .aggregate([
+
+        {
+           "$match": {
+               "sub_id":exam_id,
+               "cat_id": maincat,
+               "exam_subcat": "exam_cat_id",
+               exam_queststatus:{$ne:"D"}
+           }
+          },
+                  { '$lookup': {
+               'from': "tbl__category",
+               'localField': 'cat_id',
+               'foreignField': 'cat_id',
+               'as': 'ExamData'
+             }},                      
+              { "$unwind": "$ExamData" }, 
+
+              { '$lookup': {
+                'from': "tbl__category",
+                'localField': 'sub_id',
+                'foreignField': 'cat_id',
+                'as': 'ExamData'
+              }},                      
+               { "$unwind": "$ExamsDatas" }, 
+                  {
+                    "$group": {
+                        "_id":"$ExamData.cat_id",
+                        "data": { "$addToSet": "$$ROOT" }
+                    }
+                },  
+        {
+          $project: {
+            total: { $sum: 1 },
+            que:"$ExamData",
+            maincatname:"$ExamData.cat_name",subcatname:"$ExamsDatas.cat_name"
+            }
+        }
+      ])
+    

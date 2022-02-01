@@ -1,0 +1,43 @@
+{
+  "name": "question_cloud_user_api_new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/question_cloud_new/question_cloud_user_api_new.git"
+  },
+  "author": "Chandru G",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/question_cloud_new/question_cloud_user_api_new/issues"
+  },
+  "homepage": "https://gitlab.com/question_cloud_new/question_cloud_user_api_new#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.1",
+    "aws-sdk": "^2.1042.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "glob": "^7.2.0",
+    "handlebars": "^4.7.7",
+    "hapi-boom-decorators": "^4.1.2",
+    "html-pdf": "^3.0.1",
+    "http-errors": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.12",
+    "multer": "^1.4.3",
+    "nodemailer": "^6.7.0",
+    "nodemon": "^2.0.14",
+    "php-unserialize": "0.0.1",
+    "phpunserialize": "^1.0.1",
+    "qs": "^6.10.1",
+    "razorpay": "^2.0.7",
+    "save": "^2.4.0",
+    "winston": "^3.3.3"
+  }
+}
